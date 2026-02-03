@@ -1,26 +1,24 @@
 """
-Configurações do Banco de Dados e Aplicação
+Configurações do Banco de Dados
 """
+import os  # ADICIONAR ESTE IMPORT
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # ============================================================================
-# === AJUSTE SEUS DADOS AQUI ===
+# CONFIGURAÇÃO VIA VARIÁVEIS DE AMBIENTE (Docker)
 # ============================================================================
-# Configuração da URL do Banco de Dados
-# Exemplos:
-# PostgreSQL: "postgresql://usuario:senha@localhost:5432/nome_do_banco"
-# MySQL: "mysql+pymysql://usuario:senha@localhost:3306/nome_do_banco"
-# SQLite: "sqlite:///./banco.db"
-DATABASE_URL = "postgresql://postgres:1234@localhost:5432/leloca"
+# Pega do ambiente ou usa valor padrão (localhost para desenvolvimento local)
+DATABASE_URL = os.getenv(
+    "DATABASE_URL", 
+    "postgresql://postgres:aluno@localhost:5432/leidiane"  # fallback para localhost
+)
 
-# Chave secreta para geração de tokens JWT (ALTERE PARA UM VALOR SEGURO!)
-SECRET_KEY = "7a3f2b95c1d4e6f8ab12c3d4e5f6a7b8"
+SECRET_KEY = os.getenv("SECRET_KEY", "1234")
+ALGORITHM = os.getenv("ALGORITHM", "HS256")
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", "30"))
 # ============================================================================
-
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 # Criação do engine do SQLAlchemy
 engine = create_engine(

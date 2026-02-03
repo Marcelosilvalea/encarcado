@@ -16,7 +16,7 @@ from sqlalchemy.exc import SQLAlchemyError
 # PostgreSQL: "postgresql://usuario:senha@localhost:5432/nome_do_banco"
 # MySQL: "mysql+pymysql://usuario:senha@localhost:3306/nome_do_banco"
 # SQLite: "sqlite:///./banco.db"
-DATABASE_URL = "postgresql://postgres:1234@localhost:5432/leloca"
+DATABASE_URL = "postgresql://postgres:aluno@localhost:5432/leidiane"
 # ============================================================================
 
 
